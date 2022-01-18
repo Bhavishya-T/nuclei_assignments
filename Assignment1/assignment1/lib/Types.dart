@@ -3,18 +3,21 @@ abstract class Type {
 }
 
 class Raw extends Type {
+  @override
   double calculate(int price) {
     return price * 0.125;
   }
 }
 
 class Manufactured extends Type {
+  @override
   double calculate(int price) {
     return price * 0.125 + (price * 0.125 + price) * 0.02;
   }
 }
 
 class Imported extends Type {
+  @override
   double calculate(int price) {
     double total = price + price * 0.1;
     if (total <= 100) {

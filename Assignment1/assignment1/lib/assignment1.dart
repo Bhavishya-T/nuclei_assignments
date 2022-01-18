@@ -1,4 +1,4 @@
-import 'Types.dart' as Types;
+import 'types.dart' as types;
 
 void create(String name, int price, int quantity, String type) {
   double tax = 0.0;
@@ -6,16 +6,16 @@ void create(String name, int price, int quantity, String type) {
   type.toLowerCase();
   switch (type) {
     case 'raw':
-      tax = Types.Raw().calculate(price);
+      tax = types.Raw().calculate(price);
       break;
     case 'manufactured':
-      tax = Types.Manufactured().calculate(price);
+      tax = types.Manufactured().calculate(price);
       break;
     case 'imported':
-      tax = Types.Imported().calculate(price);
+      tax = types.Imported().calculate(price);
       break;
     default:
-      print('None');
+      throw new Exception();
   }
   total = (tax + price) * quantity;
   print('Item Name    : $name');
