@@ -1,25 +1,32 @@
 import 'types.dart' as types;
 
-void create(String name, int price, int quantity, String type) {
+void generateBill(String name, double price, int quantity, String itemType) {
   double tax = 0.0;
   double total = 0.0;
-  type.toLowerCase();
-  switch (type) {
+  itemType.toLowerCase();
+  switch (itemType) {
     case 'raw':
-      tax = types.Raw().calculate(price);
+      var raw = types.Raw();
+      tax = raw.calculateTax(price);
+      total = raw.getTotal(tax, price, quantity);
       break;
     case 'manufactured':
-      tax = types.Manufactured().calculate(price);
+      var manufactured = types.Manufactured();
+      tax = manufactured.calculateTax(price);
+      total = manufactured.getTotal(tax, price, quantity);
       break;
     case 'imported':
-      tax = types.Imported().calculate(price);
+      var imported = types.Imported();
+      tax = imported.calculateTax(price);
+      total = imported.getTotal(tax, price, quantity);
       break;
     default:
-      throw new Exception();
+      throw Exception(
+          'Entered Item type does not exist, please enter either raw, manufactured or imported');
   }
-  total = (tax + price) * quantity;
-  print('Item Name    : $name');
-  print('Item Price   : $price');
-  print('Tax Per Item : $tax');
-  print('Final Price  : $total');
+  print('Item Name     : $name');
+  print('Item Price    : $price');
+  print('Tax Per Item  : $tax');
+  print('Item Quantity : $quantity');
+  print('Final Price   : $total');
 }

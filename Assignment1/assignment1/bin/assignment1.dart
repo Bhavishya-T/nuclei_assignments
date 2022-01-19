@@ -8,16 +8,19 @@ void main(List<String> arguments) {
       print('Enter name of the item');
       String? name = stdin.readLineSync();
       print('Enter price of the item');
-      int? price = int.parse(stdin.readLineSync()!);
+      double? price = double.parse(stdin.readLineSync()!);
       handler.isPositive(price);
       print('Enter quantity of the item');
       int? quantity = int.parse(stdin.readLineSync()!);
-      handler.isPositive(price);
+      handler.isPositive(quantity);
       print('Enter type of the item - raw, manufactured, imported');
-      String? type = stdin.readLineSync();
-      assignment1.create(name!, price, quantity, type!);
-    } on Exception catch (exception) {
-      print('Entered detail was invalid');
+      String? itemType = stdin.readLineSync();
+      assignment1.generateBill(name!, price, quantity, itemType!);
+    } on FormatException {
+      print(
+          "Entered field is supposed to be a number, please enter appropriate value");
+    } catch (exception) {
+      print(exception);
     }
     print('Do you want to enter details of another item (y/n):');
   } while (stdin.readLineSync() == 'y');

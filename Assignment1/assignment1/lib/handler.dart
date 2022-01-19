@@ -1,5 +1,6 @@
-void isPositive(int number) {
+void isPositive(var number) {
   if (number < 0) {
-    throw new Exception();
+    throw Exception(
+        'Entered field is negative, please enter appropriate value');
   }
 }
