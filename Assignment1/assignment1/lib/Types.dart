@@ -25,13 +25,14 @@ class Manufactured extends Type {
 class Imported extends Type {
   @override
   double calculateTax(double price) {
-    double total = price + price * 0.1;
+    double tax = price * 0.1;
+    double total = price + tax;
     if (total <= 100) {
-      return total + 5;
+      return tax + 5;
     } else if (total > 100 && total <= 200) {
-      return total + 10;
+      return tax + 10;
     } else {
-      return total + total * 0.05;
+      return tax + total * 0.05;
     }
   }
 }
