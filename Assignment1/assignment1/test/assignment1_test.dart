@@ -1,4 +1,5 @@
 import 'package:assignment1/types.dart' as types;
+import 'package:assignment1/handler.dart' as handler;
 import 'package:test/test.dart';
 
 void main() {
@@ -29,6 +30,11 @@ void main() {
     test("Item 3 - Imported", () {
       var imported = types.Imported();
       expect(1294.8, imported.getTotal(13.6, 86, 13));
+    });
+  });
+  group("Testing exception handling", () {
+    test("isPositive()", () {
+      expect(() => handler.isPositive(-10), throwsException);
     });
   });
 }
