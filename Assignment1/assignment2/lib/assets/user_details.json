@@ -1,0 +1,16 @@
+{
+    "1": {
+        "fullName" : "Bhavishya Tarun",
+        "age" : "21",
+        "rollNumber" : "1",
+        "address" : "Hyderabad",
+        "courses" : ["A","B","C","D"]
+    },
+    "2": {
+        "fullName" : "Bhavishya",
+        "age" : "21",
+        "rollNumber" : "2",
+        "address" : "Hyderab",
+        "courses" : ["B","E","C","D"]
+    }
+}
