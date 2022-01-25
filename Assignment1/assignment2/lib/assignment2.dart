@@ -41,6 +41,10 @@ void displayUser() {
   utilities.displayMap(order, choice);
 }
 
-void deleteUser() {}
+void deleteUser() {
+  print("Enter user's roll number whose details you want to delete");
+  int rollNumber = int.parse(stdin.readLineSync()!);
+  utilities.currentSession.remove(rollNumber);
+}
 
 void saveUser() {}
