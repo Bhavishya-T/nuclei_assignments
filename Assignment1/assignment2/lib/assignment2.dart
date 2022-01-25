@@ -1,5 +1,5 @@
 import 'package:assignment2/utilities.dart' as utilities;
-import 'package:assignment2/users.dart';
+import 'package:assignment2/users.dart' as users;
 import 'dart:io';
 
 void addUser() {
@@ -16,8 +16,8 @@ void addUser() {
     String? courses = stdin.readLineSync();
     List<String> enrolledCourses = utilities.acceptCourses(courses);
     print(utilities.currentSession);
-    Map<int, User> currentDetails = {
-      rollNumber: User(name, age, rollNumber, address, enrolledCourses)
+    Map<int, users.User> currentDetails = {
+      rollNumber: users.User(name, age, rollNumber, address, enrolledCourses)
     };
     utilities.currentSession.addAll(currentDetails);
     print(utilities.currentSession);
@@ -47,4 +47,6 @@ void deleteUser() {
   utilities.currentSession.remove(rollNumber);
 }
 
-void saveUser() {}
+void saveUser() {
+  users.saveJSON();
+}

@@ -1,16 +1,1 @@
-{
-    "1": {
-        "fullName" : "Bhavishya Tarun",
-        "age" : "21",
-        "rollNumber" : "1",
-        "address" : "Hyderabad",
-        "courses" : ["A","B","C","D"]
-    },
-    "2": {
-        "fullName" : "Bhavishya",
-        "age" : "21",
-        "rollNumber" : "2",
-        "address" : "Hyderab",
-        "courses" : ["B","E","C","D"]
-    }
-}
+{"1":{"fullName":"Bhavishya Tarun","age":"21","rollNumber":"1","address":"Hyderabad","courses":["A","B","C","D"]},"2":{"fullName":"Bhavishya","age":"21","rollNumber":"2","address":"Secunderabad","courses":["B","E","C","D"]},"4":{"fullName":"e","age":"3","rollNumber":"4","address":"r","courses":["a","b","c","d"]}}
