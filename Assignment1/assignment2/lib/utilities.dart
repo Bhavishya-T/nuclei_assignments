@@ -19,7 +19,7 @@ List<String> acceptCourses(String? courses) {
   registered.forEach((element) {
     registered_courses.add(element.toUpperCase());
   });
-  registered_courses.forEach((element) {
+  for (String element in registered_courses) {
     if (element != 'A' ||
         element != 'B' ||
         element != 'C' ||
@@ -29,7 +29,7 @@ List<String> acceptCourses(String? courses) {
       throw Exception(
           "The courses entered are invalid, please enter only - A,B,C,D,E,F");
     }
-  });
+  }
   return registered_courses;
 }
 
@@ -43,7 +43,7 @@ void loadCurrentSession(Map<int, User> map) {
   currentSession = map;
 }
 
-void displayMap(String order, int option) {
+SplayTreeMap<int, User> displayMap(String order, int option) {
   int orderInt = 0;
   if (order == 'a') {
     orderInt = 1;
@@ -68,16 +68,7 @@ void displayMap(String order, int option) {
       break;
     default:
   }
-  print('''
-  --------------------------------------------------------------------------------------------------------------------------------
-Name    Roll Number                       Age                      Address                        Courses
---------------------------------------------------------------------------------------------------------------------------------- 
-  ''');
-  result.forEach((key, value) {
-    print('''
-      $value    
-  ''');
-  });
+  return result;
 }
 
 SplayTreeMap<int, User> sortMapString(int order, String option) {

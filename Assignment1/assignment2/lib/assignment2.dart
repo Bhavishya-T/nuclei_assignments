@@ -1,6 +1,7 @@
 import 'package:assignment2/utilities.dart' as utilities;
 import 'package:assignment2/users.dart' as users;
 import 'dart:io';
+import 'dart:collection';
 
 void addUser() {
   try {
@@ -39,7 +40,16 @@ void displayUser() {
   4. Address
   ''');
     final int choice = int.parse(stdin.readLineSync()!);
-    utilities.displayMap(order, choice);
+    SplayTreeMap<int, users.User> result = utilities.displayMap(order, choice);
+    print('''
+  --------------------------------------------------------------------------------------------------------------------------------
+Name    Roll Number                       Age                      Address                        Courses
+--------------------------------------------------------------------------------------------------------------------------------- 
+  ''');
+    result.forEach((key, value) {
+      print(
+          '${value.fullName} \t ${value.rollNumber} \t ${value.age} \t ${value.address} \t ${value.courses}');
+    });
   } catch (e) {
     print("$e");
   }
