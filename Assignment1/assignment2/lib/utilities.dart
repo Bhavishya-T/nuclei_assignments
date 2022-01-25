@@ -3,12 +3,40 @@ import 'dart:collection';
 
 Map<int, User> currentSession = Map();
 
+void nameHandler(String name) {
+  if (name.length == 0 || name.contains('[0-9]')) {
+    throw Exception(
+        "Name entered isn't valid, please enter appropriate details");
+  }
+}
+
 List<String> acceptCourses(String? courses) {
-  List<String> registered_courses = courses!.split(" ");
-  if (registered_courses.length != 4) {
+  List<String> registered = courses!.split(" ");
+  if (registered.length != 4) {
     throw Exception("Registered courses should mandatorily be 4");
   }
+  List<String> registered_courses = [];
+  registered.forEach((element) {
+    registered_courses.add(element.toUpperCase());
+  });
+  registered_courses.forEach((element) {
+    if (element != 'A' ||
+        element != 'B' ||
+        element != 'C' ||
+        element != 'D' ||
+        element != 'E' ||
+        element != 'F') {
+      throw Exception(
+          "The courses entered are invalid, please enter only - A,B,C,D,E,F");
+    }
+  });
   return registered_courses;
+}
+
+void checkRollNumber(int rollNumber) {
+  if (!currentSession.containsKey(rollNumber)) {
+    throw Exception('Roll Number : $rollNumber does not exist in the database');
+  }
 }
 
 void loadCurrentSession(Map<int, User> map) {
@@ -19,8 +47,10 @@ void displayMap(String order, int option) {
   int orderInt = 0;
   if (order == 'a') {
     orderInt = 1;
-  } else {
+  } else if (order == 'd') {
     orderInt = -1;
+  } else {
+    throw Exception("Entered order for sorting is invalid");
   }
   SplayTreeMap<int, User> result = SplayTreeMap();
   switch (option) {

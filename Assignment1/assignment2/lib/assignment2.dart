@@ -6,6 +6,7 @@ void addUser() {
   try {
     print('Enter Full Name :');
     String name = stdin.readLineSync()!;
+    utilities.nameHandler(name);
     print('Enter Age :');
     int age = int.parse(stdin.readLineSync()!);
     print('Enter Address :');
@@ -15,7 +16,6 @@ void addUser() {
     print('Enter courses you want to enroll in (Choose 4 - A,B,C,D,E,F) :');
     String? courses = stdin.readLineSync();
     List<String> enrolledCourses = utilities.acceptCourses(courses);
-    print(utilities.currentSession);
     Map<int, users.User> currentDetails = {
       rollNumber: users.User(name, age, rollNumber, address, enrolledCourses)
     };
@@ -27,24 +27,33 @@ void addUser() {
 }
 
 void displayUser() {
-  print(
-      "Do you want to sort the users in ascending or descending order? (a/d)");
-  final String order = stdin.readLineSync()!;
-  print("On what basis should the users be sort, choose option from below :");
-  print('''
+  try {
+    print(
+        "Do you want to sort the users in ascending or descending order? (a/d)");
+    final String order = stdin.readLineSync()!;
+    print("On what basis should the users be sort, choose option from below :");
+    print('''
   1. Name
   2. Roll Number
   3. Age
   4. Address
   ''');
-  final int choice = int.parse(stdin.readLineSync()!);
-  utilities.displayMap(order, choice);
+    final int choice = int.parse(stdin.readLineSync()!);
+    utilities.displayMap(order, choice);
+  } catch (e) {
+    print("$e");
+  }
 }
 
 void deleteUser() {
-  print("Enter user's roll number whose details you want to delete");
-  int rollNumber = int.parse(stdin.readLineSync()!);
-  utilities.currentSession.remove(rollNumber);
+  try {
+    print("Enter user's roll number whose details you want to delete");
+    int rollNumber = int.parse(stdin.readLineSync()!);
+    utilities.checkRollNumber(rollNumber);
+    utilities.currentSession.remove(rollNumber);
+  } catch (e) {
+    print('$e');
+  }
 }
 
 void saveUser() {
