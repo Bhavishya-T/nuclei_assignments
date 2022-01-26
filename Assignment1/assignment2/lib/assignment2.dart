@@ -10,10 +10,13 @@ void addUser() {
     utilities.nameHandler(name);
     print('Enter Age :');
     int age = int.parse(stdin.readLineSync()!);
+    utilities.ensurePositive(age);
     print('Enter Address :');
     String address = stdin.readLineSync()!;
     print('Enter Roll Number :');
     int rollNumber = int.parse(stdin.readLineSync()!);
+    utilities.ensurePositive(rollNumber);
+    utilities.ensureRollNumber(rollNumber);
     print('Enter courses you want to enroll in (Choose 4 - A,B,C,D,E,F) :');
     String? courses = stdin.readLineSync();
     List<String> enrolledCourses = utilities.acceptCourses(courses);

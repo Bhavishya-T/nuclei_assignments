@@ -10,6 +10,20 @@ void nameHandler(String name) {
   }
 }
 
+void ensurePositive(int number) {
+  if (number < 0) {
+    throw Exception(
+        "Number entered is not valid, please enter a positive number");
+  }
+}
+
+void ensureRollNumber(int rollNumber) {
+  if (currentSession.containsKey(rollNumber)) {
+    throw Exception(
+        "Roll Number already exists, please enter a new roll number");
+  }
+}
+
 List<String> acceptCourses(String? courses) {
   List<String> registered = courses!.split(" ");
   if (registered.length != 4) {
@@ -19,15 +33,13 @@ List<String> acceptCourses(String? courses) {
   registered.forEach((element) {
     registered_courses.add(element.toUpperCase());
   });
+  List<String> allowedCourses = ["A", "B", "C", "D", "E", "F"];
   for (String element in registered_courses) {
-    if (element != 'A' ||
-        element != 'B' ||
-        element != 'C' ||
-        element != 'D' ||
-        element != 'E' ||
-        element != 'F') {
+    if (allowedCourses.contains(element)) {
+      allowedCourses.remove(element);
+    } else {
       throw Exception(
-          "The courses entered are invalid, please enter only - A,B,C,D,E,F");
+          "Course Entered are wrong, please enter from the given courses");
     }
   }
   return registered_courses;
@@ -55,32 +67,46 @@ SplayTreeMap<int, User> displayMap(String order, int option) {
   SplayTreeMap<int, User> result = SplayTreeMap();
   switch (option) {
     case 1:
-      result = sortMapString(orderInt, 'fullName');
+      result = sortMapName(orderInt);
       break;
     case 2:
-      result = sortMapInt(orderInt, 'rollNumber');
+      result = sortMapRollNumber(orderInt);
       break;
     case 3:
-      result = sortMapInt(orderInt, 'age');
+      result = sortMapAge(orderInt);
       break;
     case 4:
-      result = sortMapString(orderInt, 'address');
+      result = sortMapAddress(orderInt);
       break;
     default:
   }
   return result;
 }
 
-SplayTreeMap<int, User> sortMapString(int order, String option) {
+SplayTreeMap<int, User> sortMapName(int order) {
   Map<int, dynamic> map = currentSession;
   SplayTreeMap<int, User> result = SplayTreeMap<int, User>.from(
-      map, (a, b) => map[a].option.compareTo(map[b].option) * order);
+      map, (a, b) => map[a].name.compareTo(map[b].name) * order);
   return result;
 }
 
-SplayTreeMap<int, User> sortMapInt(int order, String option) {
+SplayTreeMap<int, User> sortMapRollNumber(int order) {
+  Map<int, dynamic> map = currentSession;
+  SplayTreeMap<int, User> result = SplayTreeMap<int, User>.from(map,
+      (a, b) => map[a].rollNumber > map[b].rollNumber ? order : -1 * order);
+  return result;
+}
+
+SplayTreeMap<int, User> sortMapAge(int order) {
   Map<int, dynamic> map = currentSession;
   SplayTreeMap<int, User> result = SplayTreeMap<int, User>.from(
-      map, (a, b) => map[a].option < map[b].option ? order : -1 * order);
+      map, (a, b) => map[a].age > map[b].age ? order : -1 * order);
+  return result;
+}
+
+SplayTreeMap<int, User> sortMapAddress(int order) {
+  Map<int, dynamic> map = currentSession;
+  SplayTreeMap<int, User> result = SplayTreeMap<int, User>.from(
+      map, (a, b) => map[a].address.compareTo(map[b].address) * order);
   return result;
 }
