@@ -4,7 +4,8 @@ import 'dart:collection';
 Map<int, User> currentSession = Map();
 
 void nameHandler(String name) {
-  if (name.length == 0 || name.contains('[0-9]')) {
+  RegExp number = RegExp('[0-9]');
+  if (name.length == 0 || number.hasMatch(name)) {
     throw Exception(
         "Name entered isn't valid, please enter appropriate details");
   }
@@ -63,6 +64,10 @@ SplayTreeMap<int, User> displayMap(String order, int option) {
     orderInt = -1;
   } else {
     throw Exception("Entered order for sorting is invalid");
+  }
+  if (option < 1 && option > 4) {
+    throw Exception(
+        "Entered option is invalid, please enter appropriate option");
   }
   SplayTreeMap<int, User> result = SplayTreeMap();
   switch (option) {

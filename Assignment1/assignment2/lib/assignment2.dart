@@ -51,7 +51,7 @@ Name    Roll Number                       Age                      Address      
   ''');
     result.forEach((key, value) {
       print(
-          '${value.fullName} \t ${value.rollNumber} \t ${value.age} \t ${value.address} \t ${value.courses}');
+          '${value.fullName} \t\t ${value.rollNumber} \t\t ${value.age} \t\t ${value.address} \t\t ${value.courses}');
     });
   } catch (e) {
     print("$e");
