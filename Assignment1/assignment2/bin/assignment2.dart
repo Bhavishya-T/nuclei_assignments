@@ -1,11 +1,12 @@
 import 'package:assignment2/assignment2.dart' as assignment2;
-import 'package:assignment2/utilities.dart' as utilities;
 import 'package:assignment2/users.dart' as users;
+import 'package:assignment2/session_storage.dart' as sessionStorage;
 import 'dart:io';
 
 void main(List<String> arguments) {
-  Map<int, users.User> currentSession = users.loadJSON();
-  utilities.loadCurrentSession(currentSession);
+  Map<int, users.User> currentSession =
+      sessionStorage.SessionStorage.loadJSON();
+  sessionStorage.SessionStorage.loadCurrentSession(currentSession);
   int choice = 0;
   do {
     print('''

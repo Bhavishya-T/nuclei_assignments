@@ -1,8 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:assignment2/utilities.dart' as utilities;
-
 class User {
   final String fullName, address;
   final int age, rollNumber;
@@ -35,25 +30,4 @@ class User {
   String toString() {
     return toJson().toString();
   }
-}
-
-Map<int, User> loadJSON() {
-  Map<String, dynamic> mapString = Map();
-  String contents = File(
-          '/Users/bhavishya/nuclei_assignments/Assignment1/assignment2/lib/assets/user_details.json')
-      .readAsStringSync();
-  mapString = json.decode(contents);
-  Map<int, User> result = mapString.map<int, User>((key, value) {
-    return MapEntry(int.parse(key), User.fromJson(value));
-  });
-  return result;
-}
-
-void saveJSON() {
-  Map<String, dynamic> result = utilities.currentSession.map((key, value) {
-    return MapEntry(key.toString(), value.toJson());
-  });
-  File file = File(
-      '/Users/bhavishya/nuclei_assignments/Assignment1/assignment2/lib/assets/user_details.json');
-  file.writeAsStringSync(json.encode(result));
 }

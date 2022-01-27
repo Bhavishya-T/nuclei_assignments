@@ -1,5 +1,7 @@
 import 'package:assignment2/utilities.dart' as utilities;
 import 'package:assignment2/users.dart' as users;
+import 'package:assignment2/session_storage.dart' as sessionStorage;
+import 'package:assignment2/map_utils.dart' as map_utils;
 import 'dart:io';
 import 'dart:collection';
 
@@ -23,8 +25,8 @@ void addUser() {
     Map<int, users.User> currentDetails = {
       rollNumber: users.User(name, age, rollNumber, address, enrolledCourses)
     };
-    utilities.currentSession.addAll(currentDetails);
-    print(utilities.currentSession);
+    sessionStorage.currentSession.addAll(currentDetails);
+    print(sessionStorage.currentSession);
   } catch (e) {
     print("$e");
   }
@@ -43,7 +45,8 @@ void displayUser() {
   4. Address
   ''');
     final int choice = int.parse(stdin.readLineSync()!);
-    SplayTreeMap<int, users.User> result = utilities.displayMap(order, choice);
+    SplayTreeMap<int, users.User> result =
+        map_utils.MapUtils.displayMap(order, choice);
     print('''
   --------------------------------------------------------------------------------------------------------------------------------
 Name    Roll Number                       Age                      Address                        Courses
@@ -63,12 +66,12 @@ void deleteUser() {
     print("Enter user's roll number whose details you want to delete");
     int rollNumber = int.parse(stdin.readLineSync()!);
     utilities.checkRollNumber(rollNumber);
-    utilities.currentSession.remove(rollNumber);
+    sessionStorage.currentSession.remove(rollNumber);
   } catch (e) {
     print('$e');
   }
 }
 
 void saveUser() {
-  users.saveJSON();
+  sessionStorage.SessionStorage.saveJSON();
 }

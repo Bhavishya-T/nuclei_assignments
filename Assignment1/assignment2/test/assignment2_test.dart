@@ -1,5 +1,5 @@
-import 'package:assignment2/assignment2.dart';
 import 'package:assignment2/utilities.dart' as util;
+import 'package:assignment2/map_utils.dart' as map_utils;
 import 'package:test/test.dart';
 
 void main() {
@@ -34,13 +34,13 @@ void main() {
   });
   group("Testing displayUser() ", () {
     test("Invalid sorting order", () {
-      expect(() => util.displayMap("f", 2), throwsException);
+      expect(() => map_utils.MapUtils.displayMap("f", 2), throwsException);
     });
     test("Valid sorting order", () {
-      expect(() => util.displayMap("d", 2), returnsNormally);
+      expect(() => map_utils.MapUtils.displayMap("d", 2), returnsNormally);
     });
     test("Invalid option", () {
-      expect(() => util.displayMap("f", 5), throwsException);
+      expect(() => map_utils.MapUtils.displayMap("f", 5), throwsException);
     });
   });
   group("Testing deleteUser() ", () {
