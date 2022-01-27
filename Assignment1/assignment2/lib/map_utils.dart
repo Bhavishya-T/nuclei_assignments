@@ -38,7 +38,7 @@ class MapUtils {
   static SplayTreeMap<int, User> sortMapName(int order) {
     Map<int, dynamic> map = currentSession;
     SplayTreeMap<int, User> result = SplayTreeMap<int, User>.from(
-        map, (a, b) => map[a].name.compareTo(map[b].name) * order);
+        map, (a, b) => map[a].fullName.compareTo(map[b].fullName) * order);
     return result;
   }
 
