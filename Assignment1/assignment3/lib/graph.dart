@@ -44,7 +44,6 @@ class Graph {
 
   List<Node> getDescendants(int id) {
     List<Node> result = [];
-
     GraphMethods.dfs(adjList, id);
     return result;
   }
