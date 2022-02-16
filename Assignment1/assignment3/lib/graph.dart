@@ -37,14 +37,14 @@ class Graph {
 
   List<Node> getAncestors(int id) {
     List<Node> result = [];
-    Map<Node, List<Node>> reversedAdjList = GraphMethods.graphReverse(adjList);
-    GraphMethods.dfs(reversedAdjList, id);
+    Map<Node, List<Node>> reversedAdjList = GraphUtils.graphReverse(adjList);
+    GraphUtils.dfs(reversedAdjList, id);
     return result;
   }
 
   List<Node> getDescendants(int id) {
     List<Node> result = [];
-    GraphMethods.dfs(adjList, id);
+    GraphUtils.dfs(adjList, id);
     return result;
   }
 
@@ -75,7 +75,7 @@ class Graph {
   }
 
   bool addDependency(int parentId, int childId) {
-    List<Node> result = GraphMethods.dfs(adjList, childId);
+    List<Node> result = GraphUtils.dfs(adjList, childId);
     if (result.contains(parentId)) {
       return false;
     }

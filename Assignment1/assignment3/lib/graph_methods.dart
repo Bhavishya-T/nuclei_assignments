@@ -1,6 +1,6 @@
 import 'package:assignment3/node.dart';
 
-class GraphMethods {
+class GraphUtils {
   static Map<Node, List<Node>> graphReverse(Map<Node, List<Node>> adjList) {
     Map<Node, List<Node>> result = {};
     adjList.forEach((key, value) {
