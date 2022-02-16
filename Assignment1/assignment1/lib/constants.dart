@@ -1,0 +1,7 @@
+class Constants {
+  static const RAW_ITEM_PERCENTAGE = 0.125;
+  static const MANUFACTURED_ITEM_PERCENTAGE = 0.125;
+  static const MANUFACTURED_ITEM_PERCENTAGE_EXTRA = 0.02;
+  static const IMPORTED_ITEM_PERCENTAGE = 0.1;
+  static const IMPORTED_ITEM_PERCENTAGE_EXTRA = 0.05;
+}
