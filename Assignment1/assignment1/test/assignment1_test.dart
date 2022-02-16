@@ -34,7 +34,10 @@ void main() {
   });
   group("Testing exception handling", () {
     test("isPositive()", () {
-      expect(() => handler.isPositive(-10), throwsException);
+      expect(() => handler.ensurePositive(-10), throwsException);
+    });
+    test("isPositive()", () {
+      expect(() => handler.ensurePositive(10), returnsNormally);
     });
   });
 }

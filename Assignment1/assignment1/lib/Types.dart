@@ -1,38 +1,45 @@
-class Type {
-  double calculateTax(double price) {
-    return 0.0;
-  }
+import 'package:assignment1/constants.dart';
 
-  double getTotal(double tax, double price, int quanitity) {
+abstract class ItemType {
+  late double tax;
+
+  double calculateTax(double price);
+
+  double getTotal(double price, int quanitity) {
     return (tax + price) * quanitity;
   }
 }
 
-class Raw extends Type {
+class RawItem extends ItemType {
   @override
   double calculateTax(double price) {
-    return price * 0.125;
+    tax = price * Constants.RAW_ITEM_PERCENTAGE;
+    return tax;
   }
 }
 
-class Manufactured extends Type {
+class ManufacturedItem extends ItemType {
   @override
   double calculateTax(double price) {
-    return price * 0.125 + (price * 0.125 + price) * 0.02;
+    tax = price * Constants.MANUFACTURED_ITEM_PERCENTAGE +
+        (price * Constants.MANUFACTURED_ITEM_PERCENTAGE + price) *
+            Constants.MANUFACTURED_ITEM_PERCENTAGE_EXTRA;
+    return tax;
   }
 }
 
-class Imported extends Type {
+class ImportedItem extends ItemType {
   @override
   double calculateTax(double price) {
-    double tax = price * 0.1;
-    double total = price + tax;
+    double _tax = price * Constants.IMPORTED_ITEM_PERCENTAGE;
+    double total = price + _tax;
     if (total <= 100) {
-      return tax + 5;
+      tax = _tax + 5;
     } else if (total > 100 && total <= 200) {
-      return tax + 10;
+      tax = _tax + 10;
     } else {
-      return tax + total * 0.05;
+      tax = _tax + total * Constants.IMPORTED_ITEM_PERCENTAGE_EXTRA;
     }
+    return tax;
   }
 }
