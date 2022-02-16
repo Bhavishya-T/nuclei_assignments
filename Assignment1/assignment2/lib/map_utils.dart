@@ -4,6 +4,10 @@ import 'package:assignment2/session_storage.dart';
 
 class MapUtils {
   static SplayTreeMap<int, User> displayMap(String order, int option) {
+    const int SORT_BY_NAME = 1;
+    const int SORT_BY_ROLL_NUMBER = 2;
+    const int SORT_BY_AGE = 3;
+    const int SORT_BY_ADDRESS = 4;
     int orderInt = 0;
     if (order == 'a') {
       orderInt = 1;
@@ -18,16 +22,16 @@ class MapUtils {
     }
     SplayTreeMap<int, User> result = SplayTreeMap();
     switch (option) {
-      case 1:
+      case SORT_BY_NAME:
         result = sortMapName(orderInt);
         break;
-      case 2:
+      case SORT_BY_ROLL_NUMBER:
         result = sortMapRollNumber(orderInt);
         break;
-      case 3:
+      case SORT_BY_AGE:
         result = sortMapAge(orderInt);
         break;
-      case 4:
+      case SORT_BY_ADDRESS:
         result = sortMapAddress(orderInt);
         break;
       default:
@@ -35,6 +39,7 @@ class MapUtils {
     return result;
   }
 
+  //Sorting the given map according to the passed order -> ascending or descending into a splaytreemap
   static SplayTreeMap<int, User> sortMapName(int order) {
     Map<int, dynamic> map = currentSession;
     SplayTreeMap<int, User> result = SplayTreeMap<int, User>.from(

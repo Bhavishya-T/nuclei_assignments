@@ -1,4 +1,4 @@
-import 'package:assignment2/utilities.dart' as util;
+import 'package:assignment2/utilities.dart';
 import 'package:assignment2/map_utils.dart' as map_utils;
 import 'package:test/test.dart';
 
@@ -6,29 +6,29 @@ void main() {
   group("Testing addUser() ", () {
     group("nameHandler()", () {
       test("Name with a number", () {
-        expect(() => util.nameHandler("Bhavishya2"), throwsException);
+        expect(() => Validators.nameValidator("Bhavishya2"), throwsException);
       });
       test("Empty field", () {
-        expect(() => util.nameHandler(""), throwsException);
+        expect(() => Validators.nameValidator(""), throwsException);
       });
       test("Correct name", () {
-        expect(() => util.nameHandler("Bhavishya"), returnsNormally);
+        expect(() => Validators.nameValidator("Bhavishya"), returnsNormally);
       });
     });
     group("ensurePositive()", () {
       test("Negative number", () {
-        expect(() => util.ensurePositive(-10), throwsException);
+        expect(() => Validators.ensurePositive(-10), throwsException);
       });
       test("Positive number", () {
-        expect(() => util.ensurePositive(10), returnsNormally);
+        expect(() => Validators.ensurePositive(10), returnsNormally);
       });
     });
     group("acceptCourses()", () {
       test("Wrong list", () {
-        expect(() => util.acceptCourses("A B F"), throwsException);
+        expect(() => Validators.acceptCourses("A B F"), throwsException);
       });
       test("Valid list", () {
-        expect(() => util.acceptCourses("A B C D"), returnsNormally);
+        expect(() => Validators.acceptCourses("A B C D"), returnsNormally);
       });
     });
   });
@@ -45,10 +45,10 @@ void main() {
   });
   group("Testing deleteUser() ", () {
     test("Roll Number not present in database", () {
-      expect(() => util.checkRollNumber(100), throwsException);
+      expect(() => Validators.checkRollNumber(100), throwsException);
     });
     test("Roll Number present in database", () {
-      expect(() => util.checkRollNumber(1), returnsNormally);
+      expect(() => Validators.checkRollNumber(1), returnsNormally);
     });
   });
 }

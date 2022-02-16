@@ -1,4 +1,4 @@
-import 'package:assignment2/assignment2.dart' as assignment2;
+import 'package:assignment2/assignment2.dart';
 import 'package:assignment2/users.dart' as users;
 import 'package:assignment2/session_storage.dart' as sessionStorage;
 import 'dart:io';
@@ -22,16 +22,16 @@ void main(List<String> arguments) {
       choice = int.parse(stdin.readLineSync().toString());
       switch (choice) {
         case 1:
-          assignment2.addUser();
+          UserUtils.addUser();
           break;
         case 2:
-          assignment2.displayUser();
+          UserUtils.displayUser();
           break;
         case 3:
-          assignment2.deleteUser();
+          UserUtils.deleteUser();
           break;
         case 4:
-          assignment2.saveUser();
+          UserUtils.saveUser();
           break;
         case 5:
           break;
